@@ -1,10 +1,14 @@
 package br.com.abevieiramota.jsf.model;
 
 import java.math.BigInteger;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 
 @Entity
 public class Livro {
@@ -16,6 +20,8 @@ public class Livro {
 	private String isbn;
 	private BigInteger preco;
 	private String dataLancamento;
+	@ManyToMany
+	private List<Autor> autores = new ArrayList<Autor>();
 
 	public String getTitulo() {
 		return this.titulo;
@@ -53,7 +59,11 @@ public class Livro {
 		return id;
 	}
 
-	public void setId(Integer id) {
-		this.id = id;
+	public void addAutor(Autor autor) {
+		this.autores.add(autor);
+	}
+	
+	public List<Autor> getAutores() {
+		return Collections.unmodifiableList(this.autores);
 	}
 }

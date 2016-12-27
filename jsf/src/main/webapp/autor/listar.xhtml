@@ -3,20 +3,18 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.org/ui">
-
 <h:head>
-	<title>Primeiro Exemplo usando JSF</title>
+
 </h:head>
 <h:body>
-	<h3>Hello #{produto.produto}</h3>
-
-	<p:calendar />
-
-	<p:panel id="panel" header="JSF - Componentes para Web">
-		arraste-me
-	</p:panel>
-	<p:draggable for="panel" />
+	<p:dataList value="#{autorBean.all}" var="autor" type="ordered">
+		<f:facet name="header">
+			Nome
+		</f:facet>
+		#{autor.nome}
+	</p:dataList>
 </h:body>
 
 </html>

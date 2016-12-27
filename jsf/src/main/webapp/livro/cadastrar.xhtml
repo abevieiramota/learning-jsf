@@ -3,6 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.org/ui">
 
 <h:body>
@@ -17,10 +18,28 @@
 				<h:outputLabel value="Preço: " for="preco" />
 				<h:inputText id="preco" value="#{livroBean.livro.preco}" />
 				<h:outputLabel value="Data de Lançamento: " for="dataLancamento" />
-				<h:inputText id="dataLancamento" value="#{livroBean.livro.dataLancamento}" />
-				<h:commandButton value="Gravar" action="#{livroBean.gravar}" />
+				<h:inputText id="dataLancamento"
+					value="#{livroBean.livro.dataLancamento}" />
 			</h:panelGrid>
 		</fieldset>
+
+		<fieldset>
+			<legend>Dados do Autor</legend>
+			<h:outputLabel value="Selecione o Autor:" for="autor" />
+			<h:selectOneMenu value="#{livroBean.autorId}">
+				<f:selectItems value="#{autorBean.all}" var="autor"
+					itemLabel="#{autor.nome}" itemValue="#{autor.id}" />
+			</h:selectOneMenu>
+			<h:commandButton value="Gravar Autor"
+				action="#{livroBean.gravarAutor}" />
+
+			<h:dataTable value="#{livroBean.livro.autores}" var="autor">
+				<h:column>
+					<h:outputText value="#{autor.nome}" />
+				</h:column>
+			</h:dataTable>
+		</fieldset>
+		<h:commandButton value="Gravar" action="#{livroBean.gravar}" />
 	</h:form>
 </h:body>
 
