@@ -3,6 +3,7 @@ package br.com.abevieiramota.jsf.mbean;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 
+import br.com.abevieiramota.jsf.dao.DAO;
 import br.com.abevieiramota.jsf.model.Livro;
 
 @ManagedBean
@@ -16,7 +17,9 @@ public class LivroBean {
 	private Livro livro = new Livro();
 
 	public void gravar() {
-		System.out.println("Gravando Livro " + livro.getTitulo());
+		new DAO<>().add(this.livro);
+
+		this.livro = new Livro();
 	}
 
 	public Livro getLivro() {
