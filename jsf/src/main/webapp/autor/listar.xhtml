@@ -9,12 +9,11 @@
 
 </h:head>
 <h:body>
-	<p:dataList value="#{autorBean.all}" var="autor" type="ordered">
-		<f:facet name="header">
-			Nome
-		</f:facet>
-		#{autor.nome}
-	</p:dataList>
+	<p:dataTable value="#{autorBean.all}" var="autor">
+		<p:column headerText="Nome">
+			<h:outputText value="#{autor.nome}" />
+		</p:column>
+	</p:dataTable>
 </h:body>
 
 </html>

@@ -7,7 +7,7 @@
 		<properties>
 			<property name="hibernate.dialect" value="org.hibernate.dialect.H2Dialect" />
 			<property name="javax.persistence.jdbc.driver" value="org.h2.Driver" />
-			<property name="javax.persistence.jdbc.url" value="jdbc:h2:./db/repository" />
+			<property name="javax.persistence.jdbc.url" value="jdbc:h2:./db/repository;AUTO_SERVER=TRUE;DB_CLOSE_ON_EXIT=FALSE" />
 			<property name="hibernate.show_sql" value="true" />
 			<property name="hibernate.format_sql" value="true" />
 			<property name="hibernate.hbm2ddl.auto" value="create-drop" />

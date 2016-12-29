@@ -2,6 +2,7 @@ package br.com.abevieiramota.jsf.model;
 
 import java.math.BigInteger;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Collections;
 import java.util.List;
 
@@ -9,6 +10,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 public class Livro {
@@ -19,7 +22,8 @@ public class Livro {
 	private String titulo;
 	private String isbn;
 	private BigInteger preco;
-	private String dataLancamento;
+	@Temporal(TemporalType.TIMESTAMP)
+	private Calendar dataLancamento = Calendar.getInstance();
 	@ManyToMany
 	private List<Autor> autores = new ArrayList<Autor>();
 
@@ -47,11 +51,11 @@ public class Livro {
 		this.preco = preco;
 	}
 
-	public String getDataLancamento() {
+	public Calendar getDataLancamento() {
 		return this.dataLancamento;
 	}
 
-	public void setDataLancamento(String dataLancamento) {
+	public void setDataLancamento(Calendar dataLancamento) {
 		this.dataLancamento = dataLancamento;
 	}
 
@@ -62,7 +66,7 @@ public class Livro {
 	public void addAutor(Autor autor) {
 		this.autores.add(autor);
 	}
-	
+
 	public List<Autor> getAutores() {
 		return Collections.unmodifiableList(this.autores);
 	}

@@ -19,7 +19,9 @@
 			<h:outputText value="#{livro.preco}" />
 		</p:column>
 		<p:column headerText="Data de Lançamento">
-			<h:outputText value="#{livro.dataLancamento}" />
+			<h:outputText value="#{livro.dataLancamento.time}">
+				<f:convertDateTime pattern="dd/MM/yyyy HH:mm"/>
+			</h:outputText>
 		</p:column>
 	</p:dataTable>
 </h:body>

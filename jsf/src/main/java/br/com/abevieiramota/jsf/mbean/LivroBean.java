@@ -3,8 +3,12 @@ package br.com.abevieiramota.jsf.mbean;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
+import javax.faces.component.UIComponent;
+import javax.faces.context.FacesContext;
+import javax.faces.validator.ValidatorException;
 
 import br.com.abevieiramota.jsf.dao.DAO;
 import br.com.abevieiramota.jsf.model.Autor;
@@ -39,16 +43,25 @@ public class LivroBean {
 
 	public String gravar() {
 		if (this.livro.getAutores().isEmpty()) {
-			throw new RuntimeException("Livro deve ter pelo menos 1 autor");
+			FacesContext.getCurrentInstance().addMessage("autor",
+					new FacesMessage("Livro deve ter pelo menos 1 autor."));
+			return "/livro/cadastrar.xhtml";
+		} else {
+			new DAO<>(Livro.class).add(this.livro);
+
+			this.livro = new Livro();
+
+			atualizarLivros();
+
+			return "/livro/listar.xhtml";
 		}
+	}
 
-		new DAO<>(Livro.class).add(this.livro);
-
-		this.livro = new Livro();
-
-		atualizarLivros();
-
-		return "/livro/listar.xhtml";
+	public void comecaComDigitoUm(FacesContext fc, UIComponent component, Object value) throws ValidatorException {
+		String valor = value.toString();
+		if (!valor.startsWith("1")) {
+			throw new ValidatorException(new FacesMessage("Deveria começar com 1."));
+		}
 	}
 
 	public Livro getLivro() {
