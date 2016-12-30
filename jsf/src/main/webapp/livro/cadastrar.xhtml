@@ -64,6 +64,10 @@
 			<f:ajax execute="@form" render="@form :tabelaLivros" />
 		</h:commandButton>
 
+		<br />
+		<h:commandLink value="Cadastrar novo autor"
+			action="#{livroBean.formAutor}" immediate="true"/>
+
 		<p:dataTable var="livro" value="#{livroBean.all}" id="tabelaLivros">
 			<p:column headerText="Título">
 				<h:outputText value="#{livro.titulo}" />

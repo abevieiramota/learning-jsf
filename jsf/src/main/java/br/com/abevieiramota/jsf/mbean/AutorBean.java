@@ -30,7 +30,7 @@ public class AutorBean {
 
 		atualizarAutores();
 
-		return "/autor/listar.xhtml";
+		return "/livro/cadastrar.xhtml?faces-redirect=true";
 	}
 
 	public List<Autor> getAll() {

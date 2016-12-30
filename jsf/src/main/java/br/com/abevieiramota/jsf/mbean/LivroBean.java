@@ -1,5 +1,6 @@
 package br.com.abevieiramota.jsf.mbean;
 
+import java.io.Serializable;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -13,10 +14,13 @@ import javax.faces.validator.ValidatorException;
 import br.com.abevieiramota.jsf.dao.DAO;
 import br.com.abevieiramota.jsf.model.Autor;
 import br.com.abevieiramota.jsf.model.Livro;
+import br.com.abevieiramota.jsf.util.RedirectView;
 
 @ManagedBean
 @ViewScoped
-public class LivroBean {
+public class LivroBean implements Serializable {
+
+	private static final long serialVersionUID = 1L;
 
 	private List<Livro> livros;
 	private int autorId;
@@ -27,33 +31,33 @@ public class LivroBean {
 		atualizarLivros();
 	}
 
-	public String gravarAutor() {
+	public void gravarAutor() {
 		Autor autorSelecionado = new DAO<>(Autor.class).find(this.autorId);
 
 		this.livro.addAutor(autorSelecionado);
 
 		atualizarLivros();
-
-		return "livro/listar.xhtml";
 	}
 
 	private void atualizarLivros() {
 		this.livros = new DAO<>(Livro.class).all();
 	}
 
-	public String gravar() {
+	public RedirectView	 formAutor() {
+		System.out.println("oi");
+		return new RedirectView("/autor/cadastrar.xhtml");
+	}
+
+	public void gravar() {
 		if (this.livro.getAutores().isEmpty()) {
 			FacesContext.getCurrentInstance().addMessage("autor",
 					new FacesMessage("Livro deve ter pelo menos 1 autor."));
-			return "/livro/cadastrar.xhtml";
 		} else {
 			new DAO<>(Livro.class).add(this.livro);
 
 			this.livro = new Livro();
 
 			atualizarLivros();
-
-			return null;
 		}
 	}
 
