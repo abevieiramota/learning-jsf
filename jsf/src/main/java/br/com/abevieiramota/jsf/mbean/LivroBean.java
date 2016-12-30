@@ -53,7 +53,7 @@ public class LivroBean {
 
 			atualizarLivros();
 
-			return "/livro/listar.xhtml";
+			return null;
 		}
 	}
 
