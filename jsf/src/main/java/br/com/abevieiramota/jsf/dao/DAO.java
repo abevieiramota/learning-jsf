@@ -5,6 +5,8 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.criteria.CriteriaQuery;
 
+import br.com.abevieiramota.jsf.model.Livro;
+
 public class DAO<T> {
 
 	private Class<T> clazz;
@@ -46,6 +48,18 @@ public class DAO<T> {
 		em.close();
 
 		return entity;
+	}
+
+	public void remover(Livro livro) {
+		EntityManager em = new JPAUtil().getEntityManager();
+		
+		em.getTransaction().begin();
+
+		em.remove(em.merge(livro));
+		
+		em.getTransaction().commit();
+		
+		em.close();
 	}
 
 }
