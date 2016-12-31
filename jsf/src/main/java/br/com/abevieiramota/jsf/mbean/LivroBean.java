@@ -31,33 +31,38 @@ public class LivroBean implements Serializable {
 		atualizarLivros();
 	}
 
-	public void gravarAutor() {
+	public String gravarAutor() {
 		Autor autorSelecionado = new DAO<>(Autor.class).find(this.autorId);
 
 		this.livro.addAutor(autorSelecionado);
 
 		atualizarLivros();
+
+		return null;
 	}
 
 	private void atualizarLivros() {
 		this.livros = new DAO<>(Livro.class).all();
 	}
 
-	public RedirectView	 formAutor() {
+	public RedirectView formAutor() {
 		System.out.println("oi");
 		return new RedirectView("/autor/cadastrar.xhtml");
 	}
 
-	public void gravar() {
+	public String gravar() {
 		if (this.livro.getAutores().isEmpty()) {
 			FacesContext.getCurrentInstance().addMessage("autor",
 					new FacesMessage("Livro deve ter pelo menos 1 autor."));
+			return null;
 		} else {
 			new DAO<>(Livro.class).add(this.livro);
 
 			this.livro = new Livro();
 
 			atualizarLivros();
+			
+			return null;
 		}
 	}
 

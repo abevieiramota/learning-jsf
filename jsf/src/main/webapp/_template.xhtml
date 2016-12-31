@@ -7,16 +7,24 @@
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 
-<ui:composition template="../_template.xhtml">
-	<ui:define name="titulo">
-		Listar autores
-	</ui:define>
-	<ui:define name="conteudo">
-		<p:dataTable value="#{autorBean.all}" var="autor">
-			<p:column headerText="Nome">
-				<h:outputText value="#{autor.nome}" />
-			</p:column>
-		</p:dataTable>
-	</ui:define>
-</ui:composition>
+<h:head />
+<h:body>
+	<div id="cabecalho">
+		<h:graphicImage library="img" name="gogli.png" />
+		<h1>
+			<ui:insert name="titulo" />
+		</h1>
+	</div>
+
+	<div id="conteudo">
+		<ui:insert name="conteudo" />
+	</div>
+
+	<div id="rodape">
+		<ui:insert name="rodape"> 
+			copyright 2012
+		</ui:insert>
+	</div>
+
+</h:body>
 </html>
