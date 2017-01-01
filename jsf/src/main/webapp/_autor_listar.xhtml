@@ -1,0 +1,22 @@
+<ui:fragment xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+	<h:form id="listar">
+		<p:dataTable value="#{autorBean.all}" var="autor">
+			<p:column headerText="Nome">
+				<h:outputText value="#{autor.nome}" />
+			</p:column>
+			<p:column headerText="Remover">
+				<h:commandLink value="X" action="#{autorBean.remover(autor)}" />
+			</p:column>
+			<p:column headerText="Alterar">
+				<h:commandLink value="altera">
+					<f:setPropertyActionListener value="autor"
+						target="#{autorBean.autor}" />
+				</h:commandLink>
+			</p:column>
+		</p:dataTable>
+	</h:form>
+</ui:fragment>

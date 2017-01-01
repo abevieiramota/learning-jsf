@@ -41,6 +41,10 @@ public class LivroBean implements Serializable {
 		return null;
 	}
 
+	public void removerAutorDoLivro(Autor autor) {
+		this.livro.removerAutor(autor);
+	}
+
 	private void atualizarLivros() {
 		this.livros = new DAO<>(Livro.class).all();
 	}
@@ -56,7 +60,11 @@ public class LivroBean implements Serializable {
 					new FacesMessage("Livro deve ter pelo menos 1 autor."));
 			return null;
 		} else {
-			new DAO<>(Livro.class).add(this.livro);
+			if (this.livro.getId() == null) {
+				new DAO<>(Livro.class).add(this.livro);
+			} else {
+				new DAO<>(Livro.class).update(this.livro);
+			}
 
 			this.livro = new Livro();
 
@@ -68,8 +76,8 @@ public class LivroBean implements Serializable {
 
 	public void remover(Livro livroParaApagar) {
 		System.out.println("Removendo livro");
-		new DAO<>(Livro.class).remover(livroParaApagar);
-		
+		new DAO<>(Livro.class).remove(livroParaApagar);
+
 		atualizarLivros();
 	}
 
@@ -78,6 +86,10 @@ public class LivroBean implements Serializable {
 		if (!valor.startsWith("1")) {
 			throw new ValidatorException(new FacesMessage("Deveria começar com 1."));
 		}
+	}
+	
+	public void setLivro(Livro livro) {
+		this.livro = livro;
 	}
 
 	public Livro getLivro() {

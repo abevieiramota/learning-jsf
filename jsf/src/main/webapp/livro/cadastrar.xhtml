@@ -61,6 +61,10 @@
 					<h:column>
 						<h:outputText value="#{autor.nome}" />
 					</h:column>
+					<h:column>
+						<h:commandLink value="X"
+							action="#{livroBean.removerAutorDoLivro(autor)}" />
+					</h:column>
 				</h:dataTable>
 			</fieldset>
 			<h:commandButton value="Gravar" action="#{livroBean.gravar}">
@@ -71,23 +75,8 @@
 			<h:commandLink value="Cadastrar novo autor"
 				action="#{livroBean.formAutor}" immediate="true" />
 
-			<p:dataTable var="livro" value="#{livroBean.all}" id="tabelaLivros">
-				<p:column headerText="Título">
-					<h:outputText value="#{livro.titulo}" />
-				</p:column>
-				<p:column headerText="ISBN">
-					<h:outputText value="#{livro.isbn}" />
-				</p:column>
-				<p:column headerText="Preço">
-					<h:outputText value="#{livro.preco}" />
-				</p:column>
-				<p:column headerText="Data de Lançamento">
-					<h:outputText value="#{livro.dataLancamento.time}">
-						<f:convertDateTime pattern="dd/MM/yyyy HH:mm" />
-					</h:outputText>
-				</p:column>
-			</p:dataTable>
 		</h:form>
+		<ui:include src="../_livro_listar.xhtml" />
 	</ui:define>
 </ui:composition>
 

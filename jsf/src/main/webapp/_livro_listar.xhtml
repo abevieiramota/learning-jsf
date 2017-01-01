@@ -1,0 +1,33 @@
+<ui:fragment xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+	<h:form id="listar">
+		<p:dataTable var="livro" value="#{livroBean.all}">
+			<p:column headerText="Título">
+				<h:outputText value="#{livro.titulo}" />
+			</p:column>
+			<p:column headerText="ISBN">
+				<h:outputText value="#{livro.isbn}" />
+			</p:column>
+			<p:column headerText="Preço">
+				<h:outputText value="#{livro.preco}" />
+			</p:column>
+			<p:column headerText="Data de Lançamento">
+				<h:outputText value="#{livro.dataLancamento.time}">
+					<f:convertDateTime pattern="dd/MM/yyyy HH:mm" />
+				</h:outputText>
+			</p:column>
+			<p:column headerText="Remover">
+				<h:commandLink value="remove" action="#{livroBean.remover(livro)}" />
+			</p:column>
+			<p:column headerText="Alterar">
+				<h:commandLink value="altera">
+					<f:setPropertyActionListener value="livro"
+						target="#{livroBean.livro}" />
+				</h:commandLink>
+			</p:column>
+		</p:dataTable>
+	</h:form>
+</ui:fragment>

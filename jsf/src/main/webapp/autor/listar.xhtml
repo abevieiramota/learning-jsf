@@ -12,11 +12,7 @@
 		Listar autores
 	</ui:define>
 	<ui:define name="conteudo">
-		<p:dataTable value="#{autorBean.all}" var="autor">
-			<p:column headerText="Nome">
-				<h:outputText value="#{autor.nome}" />
-			</p:column>
-		</p:dataTable>
+		<ui:include src="../_autor_listar.xhtml" />
 	</ui:define>
 </ui:composition>
 </html>

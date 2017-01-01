@@ -34,14 +34,14 @@ public class PopulaBanco {
 		Livro livro1 = new Livro();
 		livro1.setDataLancamento(parseData("10/10/2012"));
 		livro1.setIsbn("1234");
-		livro1.setPreco(new BigInteger("100000"));
+		livro1.setPreco(new BigInteger("100"));
 		livro1.setTitulo("A hora da verdade");
 		livro1.addAutor(autor1);
 
 		Livro livro2 = new Livro();
 		livro2.setDataLancamento(parseData("23/02/2016"));
 		livro2.setIsbn("1233");
-		livro2.setPreco(new BigInteger("450000"));
+		livro2.setPreco(new BigInteger("450"));
 		livro2.setTitulo("O poder do agora");
 		livro2.addAutor(autor2);
 
