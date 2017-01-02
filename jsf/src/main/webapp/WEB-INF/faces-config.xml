@@ -5,6 +5,7 @@
 	version="2.2">
 
 	<lifecycle>
+		<phase-listener>br.com.abevieiramota.jsf.util.Autorizador</phase-listener>
 		<phase-listener>br.com.abevieiramota.jsf.util.LogPhaseListener</phase-listener>
 	</lifecycle>
 </faces-config>

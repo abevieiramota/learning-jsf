@@ -2,6 +2,7 @@ package br.com.abevieiramota.jsf.mbean;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
+import javax.faces.context.FacesContext;
 
 import br.com.abevieiramota.jsf.dao.UsuarioDao;
 import br.com.abevieiramota.jsf.model.Usuario;
@@ -22,6 +23,9 @@ public class LoginBean {
 		boolean usuarioExiste = new UsuarioDao().existe(this.usuario);
 		
 		if (usuarioExiste) {
+			FacesContext fc = FacesContext.getCurrentInstance();
+			fc.getExternalContext().getSessionMap().put("usuarioLogado", this.usuario);
+			
 			return new RedirectView("livro/cadastrar");
 		}
 
