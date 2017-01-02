@@ -23,9 +23,11 @@ public class PopulaBanco {
 	public void populaBanco() {
 		Autor autor1 = new Autor();
 		autor1.setNome("Abelardo");
+		autor1.setEmail("abevieiramota@gmail.com");
 
 		Autor autor2 = new Autor();
 		autor2.setNome("Lovecraft");
+		autor2.setEmail("lovecraft@gmail.com");
 
 		DAO<Autor> autorDao = new DAO<>(Autor.class);
 		autorDao.add(autor1);

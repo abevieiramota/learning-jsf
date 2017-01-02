@@ -15,6 +15,7 @@ public class AutorBean {
 
 	private Autor autor = new Autor();
 	private List<Autor> autores;
+	private Integer autorId;
 
 	@PostConstruct
 	public void postConstruct() {
@@ -23,6 +24,13 @@ public class AutorBean {
 
 	private void atualizarAutores() {
 		this.autores = new DAO<>(Autor.class).all();
+	}
+
+	public void carregarAutorPeloId() {
+		this.autor = new DAO<>(Autor.class).find(this.autorId);
+		if(this.autor == null) {
+			this.autor = new Autor();
+		}
 	}
 
 	public String gravar() {
@@ -51,6 +59,14 @@ public class AutorBean {
 
 	public Autor getAutor() {
 		return autor;
+	}
+
+	public Integer getAutorId() {
+		return autorId;
+	}
+
+	public void setAutorId(Integer autorId) {
+		this.autorId = autorId;
 	}
 
 }

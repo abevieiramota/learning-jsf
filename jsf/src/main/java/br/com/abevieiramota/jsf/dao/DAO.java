@@ -71,5 +71,4 @@ public class DAO<T> {
 
 		em.close();
 	}
-
 }

@@ -23,8 +23,9 @@ public class LivroBean implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	private List<Livro> livros;
-	private int autorId;
+	private Integer autorId;
 	private Livro livro = new Livro();
+	private Integer livroId;
 
 	@PostConstruct
 	public void postConstruct() {
@@ -39,6 +40,13 @@ public class LivroBean implements Serializable {
 		atualizarLivros();
 
 		return null;
+	}
+	
+	public void carregaLivroPeloId() {
+		this.livro = new DAO<>(Livro.class).find(this.livroId);
+		if(this.livro == null) {
+			this.livro = new Livro();
+		}
 	}
 
 	public void removerAutorDoLivro(Autor autor) {
@@ -100,11 +108,19 @@ public class LivroBean implements Serializable {
 		return this.livros;
 	}
 
-	public int getAutorId() {
+	public Integer getAutorId() {
 		return autorId;
 	}
 
-	public void setAutorId(int autorId) {
+	public void setAutorId(Integer autorId) {
 		this.autorId = autorId;
+	}
+
+	public Integer getLivroId() {
+		return livroId;
+	}
+
+	public void setLivroId(Integer livroId) {
+		this.livroId = livroId;
 	}
 }
