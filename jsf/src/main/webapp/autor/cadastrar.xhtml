@@ -7,7 +7,7 @@
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
 	xmlns:f="http://xmlns.jcp.org/jsf/core">
 
-<ui:composition template="../_template.xhtml">
+<ui:composition template="../WEB-INF/_template.xhtml">
 
 	<f:metadata>
 		<f:viewParam name="autorId" value="#{autorBean.autorId}" />
@@ -35,7 +35,7 @@
 				</h:panelGrid>
 			</fieldset>
 		</h:form>
-		<ui:include src="../_autor_listar.xhtml" />
+		<ui:include src="../WEB-INF/_autor_listar.xhtml" />
 	</ui:define>
 </ui:composition>
 </html>

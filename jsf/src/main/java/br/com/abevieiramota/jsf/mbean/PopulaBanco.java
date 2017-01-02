@@ -14,6 +14,7 @@ import javax.faces.bean.ManagedBean;
 import br.com.abevieiramota.jsf.dao.DAO;
 import br.com.abevieiramota.jsf.model.Autor;
 import br.com.abevieiramota.jsf.model.Livro;
+import br.com.abevieiramota.jsf.model.Usuario;
 
 @ManagedBean(eager = true)
 @ApplicationScoped
@@ -50,6 +51,12 @@ public class PopulaBanco {
 		DAO<Livro> livroDao = new DAO<>(Livro.class);
 		livroDao.add(livro1);
 		livroDao.add(livro2);
+		
+		Usuario usuario = new Usuario();
+		usuario.setEmail("abevieiramota@gmail.com");
+		usuario.setSenha("123456");
+		
+		new DAO<>(Usuario.class).add(usuario);
 	}
 
 	private static DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
