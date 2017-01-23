@@ -8,4 +8,16 @@
 		<phase-listener>br.com.abevieiramota.jsf.util.Autorizador</phase-listener>
 		<phase-listener>br.com.abevieiramota.jsf.util.LogPhaseListener</phase-listener>
 	</lifecycle>
+	
+	<application>
+		<resource-bundle>
+			<base-name>br.com.abevieiramota.jsf.messages</base-name>
+			<var>msgs</var>
+		</resource-bundle>
+		<locale-config>
+			<default-locale>pt</default-locale>
+			<supported-locale>en</supported-locale>
+		</locale-config>
+	</application>
+	
 </faces-config>

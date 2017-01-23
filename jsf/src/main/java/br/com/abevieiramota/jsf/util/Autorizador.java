@@ -9,15 +9,16 @@ import javax.faces.event.PhaseListener;
 import br.com.abevieiramota.jsf.model.Usuario;
 
 public class Autorizador implements PhaseListener {
+
 	@Override
 	public void afterPhase(PhaseEvent event) {
 
 		FacesContext fc = event.getFacesContext();
-		String nomePagina = fc.getViewRoot().getViewId();
+		String paginaDestino = fc.getViewRoot().getViewId();
 
-		System.out.println(nomePagina);
+		System.out.println(paginaDestino);
 
-		if ("/login.xhtml".equals(nomePagina)) {
+		if ("/login.xhtml".equals(paginaDestino) || "/index.xhtml".equals(paginaDestino)) {
 			return;
 		}
 
@@ -26,9 +27,12 @@ public class Autorizador implements PhaseListener {
 		if (usuarioLogado != null) {
 			return;
 		}
+		
+		fc.getExternalContext().getSessionMap().put("paginaDestino", paginaDestino);
 
 		NavigationHandler handler = fc.getApplication().getNavigationHandler();
 		handler.handleNavigation(fc, null, "/login?faces-redirect=true");
+
 		fc.renderResponse();
 	}
 

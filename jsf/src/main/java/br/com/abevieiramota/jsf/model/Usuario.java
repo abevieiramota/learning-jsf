@@ -11,6 +11,7 @@ public class Usuario {
 	private Integer id;
 	private String email;
 	private String senha;
+	private String locale = "en";
 	
 	public Integer getId() {
 		return this.id;
@@ -29,5 +30,8 @@ public class Usuario {
 	}
 	public void setSenha(String senha) {
 		this.senha = senha;
+	}
+	public String getLocale() {
+		return locale;
 	}
 }

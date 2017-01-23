@@ -5,7 +5,8 @@
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
 	xmlns:f="http://xmlns.jcp.org/jsf/core"
 	xmlns:p="http://primefaces.org/ui"
-	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
 
 <ui:composition template="WEB-INF/_template.xhtml">
 
@@ -13,31 +14,33 @@
 		Login
 	</ui:define>
 	<ui:define name="conteudo">
-		<h:form id="cadastro">
-			<h:messages id="messages" />
-			<fieldset>
-				<legend>Login</legend>
-				<h:panelGrid columns="3">
-					<h:outputLabel value="Email: " for="email" />
-					<h:inputText id="email" value="#{loginBean.usuario.email}"
-						required="true" requiredMessage="Email obrigatório.">
-						<f:passThroughAttribute name="type" value="email" />
-					</h:inputText>
-					<h:message for="email" id="messageEmail" />
+		<c:if test="#{empty usuarioLogado}">
+			<h:messages globalOnly="true" />
+			<h:form id="cadastro">
+				<fieldset>
+					<legend>Login</legend>
+					<h:panelGrid columns="3">
+						<h:outputLabel value="Email: " for="email" />
+						<h:inputText id="email" value="#{loginBean.usuario.email}"
+							required="true" requiredMessage="Email obrigatório.">
+							<f:passThroughAttribute name="type" value="email" />
+						</h:inputText>
+						<h:message for="email" id="messageEmail" />
 
-					<h:outputLabel value="Senha: " for="senha" />
-					<h:inputSecret id="senha" value="#{loginBean.usuario.senha}"
-						required="true" requiredMessage="Senha obrigatória." />
-					<h:message for="senha" id="messageSenha" />
-				</h:panelGrid>
-			</fieldset>
+						<h:outputLabel value="Senha: " for="senha" />
+						<h:inputSecret id="senha" value="#{loginBean.usuario.senha}"
+							required="true" requiredMessage="Senha obrigatória." />
+						<h:message for="senha" id="messageSenha" />
+					</h:panelGrid>
+				</fieldset>
 
-			<h:commandButton value="Efetuar login"
-				action="#{loginBean.efetuarLogin}">
-			</h:commandButton>
+				<h:commandButton value="Efetuar login"
+					action="#{loginBean.efetuarLogin}">
+				</h:commandButton>
 
-			<br />
-		</h:form>
+				<br />
+			</h:form>
+		</c:if>
 	</ui:define>
 </ui:composition>
 

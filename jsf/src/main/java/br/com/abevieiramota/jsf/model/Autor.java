@@ -22,6 +22,7 @@ public class Autor {
 	}
 
 	public void setNome(String nome) {
+		System.out.println("Setando nome");
 		this.nome = nome;
 	}
 
@@ -30,6 +31,7 @@ public class Autor {
 	}
 
 	public void setEmail(String email) {
+		System.out.println("Setando email");
 		this.email = email;
 	}
 }
