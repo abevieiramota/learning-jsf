@@ -8,8 +8,14 @@
 </head>
 <body>
 	<f:view locale="#{usuarioLogado != null ? usuarioLogado.locale : ''}">
+		<h:outputFormat value="#{msgs.msgFormat}">
+			<f:param value="aprender JSF" />
+		</h:outputFormat>
+		<br />
 		<h:outputText value="#{msgs.msgErro}" />
+		<br />
 		<h:outputText value="#{appBean.valor}" />
+		<br />
 	indexed:
 	<h:outputText value="#{appBean.indexed[0]}" />
 	</f:view>

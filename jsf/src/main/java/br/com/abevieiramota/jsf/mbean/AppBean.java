@@ -8,7 +8,7 @@ import javax.faces.bean.ManagedBean;
 public class AppBean {
 
 	private Integer valor = 10;
-	private Integer[] indexed = {1, 2, 3};
+	private Integer[] indexed = { 1, 2, 3 };
 
 	public Integer getValor() {
 		System.out.println("Pegou appBean.valor");
